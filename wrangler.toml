@@ -5,3 +5,6 @@ compatibility_date = "2023-06-26"
 send_email = [
     {type = "send_email", name = "send_emails", destination_address = "codebam@riseup.net"},
 ]
+
+[triggers]
+crons = ["0 8 * * *"]

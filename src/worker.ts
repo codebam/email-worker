@@ -6,7 +6,11 @@ export interface Env {
 }
 
 const name = 'Sean';
-const reminders = [].toString();
+const reminders: any = [];
+
+reminders.push('wake up');
+// put more between here
+reminders.push('go to sleep');
 
 export default {
 	fetch: async (request: Request, env: Env, ctx: ExecutionContext): Promise<Response> => new Response(),
@@ -17,7 +21,7 @@ export default {
 		msg.setSubject("Today's Daily Email");
 		msg.addMessage({
 			contentType: 'text/plain',
-			data: `Sent at epoch ${Date.now().toString()}\n` + `Hi ${name}, here are your reminders: ${reminders}`,
+			data: `Sent at epoch ${Date.now().toString()}\n` + `Hi ${name}, here are your reminders: ${reminders.toString()}`,
 		});
 		const message = new EmailMessage('cloudflare-workers@seanbehan.ca', 'codebam@riseup.net', msg.asRaw());
 		console.log(message);

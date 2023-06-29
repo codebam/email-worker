@@ -5,12 +5,12 @@ export interface Env {
 	send_emails: any;
 }
 
-const name = 'Sean';
 const reminders: any = [];
 
-reminders.push('wake up');
-// put more between here
+const name = 'Sean';
 reminders.push('go to sleep');
+
+reminders.map((reminder: string) => reminder + '\n');
 
 export default {
 	fetch: async (request: Request, env: Env, ctx: ExecutionContext): Promise<Response> => new Response(),

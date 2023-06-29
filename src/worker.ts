@@ -25,7 +25,6 @@ export default {
 			data: `Hi ${name}, Reminders:\n${reminders.toString()}`,
 		});
 		const message = new EmailMessage('cloudflare-workers@seanbehan.ca', 'codebam@riseup.net', msg.asRaw());
-		console.log(message);
 		return new Response(await env.send_emails.send(message));
 	},
 };

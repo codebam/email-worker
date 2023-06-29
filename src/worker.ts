@@ -22,7 +22,7 @@ export default {
 		msg.setSubject(epoch.toString());
 		msg.addMessage({
 			contentType: 'text/plain',
-			data: `Hi ${name}, Reminders:\n${reminders.toString()}`,
+			data: `Hi ${name},\nReminders:\n${reminders.toString()}`,
 		});
 		const message = new EmailMessage('cloudflare-workers@seanbehan.ca', 'codebam@riseup.net', msg.asRaw());
 		return new Response(await env.send_emails.send(message));

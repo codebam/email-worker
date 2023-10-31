@@ -44,6 +44,16 @@ export default {
 		} else {
 			const reminders = JSON.parse(await env.email_reminders.get('reminders'));
 			await env.email_reminders.put('reminders', JSON.stringify([...reminders, subject]));
+			const msg = createMimeMessage();
+			msg.setSender({ name: 'Cloudflare Workers', addr: 'cloudflare-workers@seanbehan.ca' });
+			msg.setRecipient('codebam@riseup.net');
+			msg.setSubject(new Date().toISOString());
+			msg.addMessage({
+				contentType: 'text/plain',
+				data: 'reminder created',
+			});
+			const message = new EmailMessage('cloudflare-workers@seanbehan.ca', 'codebam@riseup.net', msg.asRaw());
+			await env.send_emails.send(message);
 		}
 	},
 };

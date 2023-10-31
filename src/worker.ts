@@ -18,7 +18,7 @@ export default {
 		const msg = createMimeMessage();
 		msg.setSender({ name: 'Cloudflare Workers', addr: 'cloudflare-workers@seanbehan.ca' });
 		msg.setRecipient('codebam@riseup.net');
-		msg.setSubject(Math.floor(Date.now() / 1000).toString());
+		msg.setSubject(new Date().toISOString());
 		msg.addMessage({
 			contentType: 'text/plain',
 			data: `Hi ${name},\n\n${reminders.toString()}`,
